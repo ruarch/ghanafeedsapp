@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.ghanafeeds.ruarch" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Ghanafeeds</name>
+    <description>
+       Ghanafeeds.com is a news headline and content aggregator for latest news and headlines in Ghana
+    </description>
+    <author email="iteearmah@gmail.com" href="http://samuelarmah.com">
+        Samuel Armah
+    </author>
+    <content src="package.json" />
+    <access origin="*" />
+     <platform name="android">
+        <icon src="ghanafeeds.png" />
+    </platform>
+</widget>

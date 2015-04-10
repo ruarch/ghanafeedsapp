@@ -1,0 +1,9 @@
+{
+  "title": "GhanaFeeds",
+  "description": "Ghanafeeds.com is a news headline and content aggregator for latest news and headlines in Ghana",
+  "category": "Small Apps",
+  "main": "main.js",
+  "dependencies": {
+    "tabris": "0.9.4"
+  }
+}
