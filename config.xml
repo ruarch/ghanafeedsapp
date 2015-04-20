@@ -11,6 +11,7 @@
     <access origin="*" />
      <platform name="android">
         <icon src="ghanafeeds.png" />
-         <splash src="splash.png"/>
+        <splash src="splash.png" />
     </platform>
+    <preference name="SplashScreenDelay" value="10000" />
 </widget>
