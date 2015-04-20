@@ -11,8 +11,6 @@ var page = tabris.create("Page", {
   topLevel: true
 });
 
-
-
 var view = tabris.create("CollectionView", {
   layoutData: {left:0, right: 0, bottom: 0},
   itemHeight: 120,
@@ -27,7 +25,8 @@ var view = tabris.create("CollectionView", {
       markupEnabled: true
     }).appendTo(cell);
      var descView = tabris.create("TextView", {
-      layoutData: {top: [titleView, 5],left: [imageView, MARGIN], right: 5}
+      layoutData: {top: [titleView, 5],left: [imageView, MARGIN], right: 5},
+      markupEnabled: true
     }).appendTo(cell);
      var periodView = tabris.create("TextView", {
       layoutData: {top: [descView, 2],left: [imageView, MARGIN], right: 5}
@@ -43,15 +42,13 @@ var view = tabris.create("CollectionView", {
   loadItems();
 }).appendTo(page);
 view.on("select", function(target, value) {
-  var readfeed=tabris.create("Page", {
-  title: TITLE+" - "+value.ftitle,
-  topLevel: true
-});
 
     //createBookPage(value).open();
     //navigator.notification.alert(value.ftitle);
-    
-   
+     var readfeed=tabris.create("Page", {
+        title: TITLE+" - "+value.ftitle,
+      });
+
     var webview = tabris.create("WebView", {
         layoutData: {left: 0, top: 0, right: 0, bottom: 0}
     }).appendTo(readfeed);
