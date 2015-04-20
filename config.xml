@@ -11,5 +11,6 @@
     <access origin="*" />
      <platform name="android">
         <icon src="ghanafeeds.png" />
+         <splash src="splash.png"/>
     </platform>
 </widget>
