@@ -5,6 +5,7 @@ var THUMB_SIZE = 48;
 var MARGIN_SMALL = 4;
 var MARGIN = 12;
 var MARGIN_LARGE = 24;
+var conn_establish=false;
 //var url='http://ghanafeeds.com/rss/json';
 var apputils
 
@@ -56,12 +57,13 @@ function getupdate()
   var update_count=0;
   updatedata=localStorage.getItem('news_update');
   updatedata=$.parseJSON(localStorage.getItem('news_update'))
-  
+  conn_establish=true;
     $.ajax({
                 url: url,
                 dataType: 'json',
                 //timeout: 5000,
                 success:  function (data) {
+                  conn_establish=false;
                   if(data.update_id!='')
                   {
                     localStorage.setItem('news_update', JSON.stringify(data));
@@ -74,7 +76,7 @@ function getupdate()
                       if(update_count>0)
                       {
                         cordova.plugins.notification.badge.configure({ title: '%d news feeds available' });
-                        cordova.plugins.notification.badge.configure({ smallIcon: 'ic_dialog_info' });
+                        cordova.plugins.notification.badge.configure({ smallIcon: 'ic_action_star' });
                         cordova.plugins.notification.badge.configure({ autoClear: true });
                         cordova.plugins.notification.badge.set(update_count);
                          getfeed();
@@ -236,13 +238,17 @@ function loadItems(view,key) {
   });
 
   setTimeout(function() {
+        if(conn_establish==true)
+        {
+           getfeed();
+        }
       
-       getfeed();
       getVideos();
   }, 1000*5);
 }
 function gfeed(feeds)
 {
+
   
     Newsview.set({
             items: feeds,
@@ -254,11 +260,13 @@ function gfeed(feeds)
 function getfeed() {
       var items = [];
         var url='http://ghanafeeds.com/rss/json';
+        conn_establish=true;
         $.ajax({
                 url: url,
                 dataType: 'json',
                 
                 success:  function (data) {
+                  conn_establish=false;
                   //console.log(JSON.stringify(data));
                         $.each(data.news, function(key, val) {
                                 items.push({
