@@ -245,7 +245,7 @@ function loadItems(view,key) {
         }
       
       getVideos();
-  }, 1000*5);
+  }, 1000*15);
 }
 function gfeed(feeds)
 {
