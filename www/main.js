@@ -79,6 +79,7 @@ function getupdate()
                         cordova.plugins.notification.badge.configure({ smallIcon: 'ic_action_star' });
                         cordova.plugins.notification.badge.configure({ autoClear: true });
                         cordova.plugins.notification.badge.set(update_count);
+                        navigator.notification.beep(1);
                          getfeed();
                       }
                     }
@@ -248,8 +249,6 @@ function loadItems(view,key) {
 }
 function gfeed(feeds)
 {
-
-  
     Newsview.set({
             items: feeds,
             refreshIndicator: false,
