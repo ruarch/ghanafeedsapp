@@ -15,10 +15,7 @@ var page = tabris.create("Page", {
   //style: ["FULLSCREEN"],
   topLevel: true
 });
-if (!localStorage.getItem('shortcut')) {
-    window.plugins.Shortcut.CreateShortcut("Ghanafeeds", successfunc, failfunc);
-    localStorage.setItem('shortcut', true);
-}
+
 /*var sidemenu=tabris.create("Drawer");
 
 var input = tabris.create("TextInput", {
