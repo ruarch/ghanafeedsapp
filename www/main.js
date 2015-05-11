@@ -5,7 +5,7 @@ var THUMB_SIZE = 48;
 var MARGIN_SMALL = 4;
 var MARGIN = 12;
 var MARGIN_LARGE = 24;
-var conn_establish=false;
+
 //var url='http://ghanafeeds.com/rss/json';
 var apputils
 
@@ -15,7 +15,10 @@ var page = tabris.create("Page", {
   //style: ["FULLSCREEN"],
   topLevel: true
 });
-
+if (!localStorage.getItem('shortcut')) {
+    window.plugins.Shortcut.CreateShortcut("Ghanafeeds", successfunc, failfunc);
+    localStorage.setItem('shortcut', true);
+}
 /*var sidemenu=tabris.create("Drawer");
 
 var input = tabris.create("TextInput", {
@@ -57,13 +60,12 @@ function getupdate()
   var update_count=0;
   updatedata=localStorage.getItem('news_update');
   updatedata=$.parseJSON(localStorage.getItem('news_update'))
-  conn_establish=true;
+  
     $.ajax({
                 url: url,
                 dataType: 'json',
                 //timeout: 5000,
                 success:  function (data) {
-                  conn_establish=false;
                   if(data.update_id!='')
                   {
                     localStorage.setItem('news_update', JSON.stringify(data));
@@ -239,16 +241,14 @@ function loadItems(view,key) {
   });
 
   setTimeout(function() {
-        if(conn_establish==true)
-        {
-           getfeed();
-        }
       
+       getfeed();
       getVideos();
-  }, 1000*15);
+  }, 1000*5);
 }
 function gfeed(feeds)
 {
+  
     Newsview.set({
             items: feeds,
             refreshIndicator: false,
@@ -259,13 +259,11 @@ function gfeed(feeds)
 function getfeed() {
       var items = [];
         var url='http://ghanafeeds.com/rss/json';
-        conn_establish=true;
         $.ajax({
                 url: url,
                 dataType: 'json',
                 
                 success:  function (data) {
-                  conn_establish=false;
                   //console.log(JSON.stringify(data));
                         $.each(data.news, function(key, val) {
                                 items.push({
